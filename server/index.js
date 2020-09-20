@@ -35,6 +35,8 @@ words.push('mega');
 words.push('carb');
 words.push('camo');
 words.push('repo');
+words.push('rehab');
+words.push('merlot');
 
 // console.log(JSON.stringify(map, null, 4));
 console.log(wordCount);

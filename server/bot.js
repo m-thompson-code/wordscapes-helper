@@ -70,9 +70,77 @@ ioHook.on('mouseclick', event => {
     console.log(" ~ Waiting for keypress for letter value...");
 });
 
+// source: https://github.com/birkholz/soundboard/blob/master/src/keycodes.ts#L5-L69
+const keycodeMap = {
+    0: "§",
+    1: "Escape",
+    2: "1",
+    3: "2",
+    4: "3",
+    5: "4",
+    6: "5",
+    7: "6",
+    8: "7",
+    9: "8",
+    10: "9",
+    11: "0",
+    12: "-",
+    13: "=",
+    14: "Backspace",
+    15: "Tab",
+    16: "q",
+    17: "w",
+    18: "e",
+    19: "r",
+    20: "t",
+    21: "y",
+    22: "u",
+    23: "i",
+    24: "o",
+    25: "p",
+    26: "[",
+    27: "]",
+    28: "Enter",
+    29: "Control",
+    30: "a",
+    31: "s",
+    32: "d",
+    33: "f",
+    34: "g",
+    35: "h",
+    36: "j",
+    37: "k",
+    38: "l",
+    39: ";",
+    40: "'",
+    41: "`",
+    42: "Left Shift",
+    43: "\\",
+    44: "z",
+    45: "x",
+    46: "c",
+    47: "v",
+    48: "b",
+    49: "n",
+    50: "m",
+    51: ",",
+    52: ".",
+    53: "/",
+    54: "Right Shift",
+    56: "Left Alt",
+    57: "Space",
+    58: "CapsLock",
+    3640: "Right Alt",
+    3675: "Left Command",
+    3676: "Right Command"
+};
+
 ioHook.on('keydown', event => {
     console.log(event);
-    if (event.ctrlKey && (event.rawcode === 81 || event.rawcode === 67)) {
+
+    let keypressValue = keycodeMap[event.keycode];
+
+    if (event.ctrlKey && (keypressValue === 'q' || keypressValue === 'c')) {
         console.log(" ~ Terminating");
         process.exit();
     }
@@ -83,12 +151,12 @@ ioHook.on('keydown', event => {
         return;
     }
     
-    if (event.rawcode === 49) {
+    if (keypressValue === "1") {
         console.clear();
         toggleRecordMode();
     }
 
-    if (event.rawcode === 50) {
+    if (keypressValue === "2") {
         console.clear();
         toggleBotMode();
     }
@@ -106,7 +174,8 @@ ioHook.on('keydown', event => {
     }
 
     // console.log(String.fromCharCode(event.rawcode));
-    currentLetterMetadata.letter = String.fromCharCode(event.rawcode).toLowerCase();
+    // Previously this code worked only for windows. Using keycode map instead for mac support
+    currentLetterMetadata.letter = keypressValue;//String.fromCharCode(event.rawcode).toLowerCase();
 
     letterPositionFound = false;
 
