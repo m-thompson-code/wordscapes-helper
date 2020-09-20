@@ -1,0 +1,63 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 13vh;
+    padding-bottom: 13vh;
+}
+
+.angular-material-input {
+    animation: cdk-text-field-autofill-end 0s 1ms;
+
+    appearance: none;
+
+    font: inherit;
+    background: transparent;
+    color: currentColor;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+}
+
+.number-of-letters {
+    padding-bottom: 10px;
+}
+
+.letter-input {
+    max-width: 10px;
+    color: black;
+    background: white;
+    padding: 6px;
+    border-radius: 6px;
+    margin-right: 6px;
+}
+
+.filter-container {
+    display: flex;
+
+    .filter {
+        color: black;
+        background: white;
+        padding: 6px;
+        border-radius: 6px;
+        margin-right: 12px;
+    }
+
+    .clear-button {
+        background: black;
+        color: white;
+        padding: 6px 18px;
+        border-radius: 6px;
+    }
+}
+
+.padding-bottom {
+    padding-bottom: 20px;
+}
