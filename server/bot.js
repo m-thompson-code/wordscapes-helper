@@ -136,7 +136,7 @@ const keycodeMap = {
 };
 
 ioHook.on('keydown', event => {
-    console.log(event);
+    // console.log(event);
 
     let keypressValue = keycodeMap[event.keycode];
 
@@ -145,19 +145,15 @@ ioHook.on('keydown', event => {
         process.exit();
     }
 
-    // console.log(event);
-
     if (!resetPointFound) {
         return;
     }
     
     if (keypressValue === "1") {
-        console.clear();
         toggleRecordMode();
     }
 
     if (keypressValue === "2") {
-        console.clear();
         toggleBotMode();
     }
 
@@ -220,11 +216,26 @@ const toggleBotMode = () => {
         return;
     }
 
+    console.clear();
+
     console.log(` ~ BOT MODE: ON - ${filter}`);
     botMode = true;
 
+
     words = wordsGenerator.getPossbileWords(filter);
-    console.log(words);
+
+    let outputStr = "";
+
+    for (const word of words) {
+        if (outputStr) {
+            outputStr += ', ';
+        }
+        outputStr += word;
+    }
+
+    console.log('');
+    console.log(outputStr);
+    console.log('');
 
     handleWord();
 }
@@ -240,12 +251,14 @@ const toggleRecordMode = () => {
         toggleBotMode();
     }
 
+    console.clear();
+
     console.log(" ~ RecordMode: ON");
     recordingMode = true;
 
     letterMetadatas = [];
 
-    console.log(" ~ Click the position of a letter, then press that letter on the keyboard. Press Ctrl + R to stop recording or press Ctrl + S to stop recording and run bot");
+    console.log(" ~ Click the position of a letter, then press that letter on the keyboard. Press 1 to stop recording or press 2 to stop recording and run bot");
     console.log(" ~ Waiting for mouse click for letter position...");
 }
 
