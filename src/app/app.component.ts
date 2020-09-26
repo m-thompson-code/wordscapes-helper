@@ -71,15 +71,17 @@ export class AppComponent {
             return;
         }
 
+        const _filter = (this.filter || '').toLowerCase();
+
         for (const word of this.words) {
             const filterAry = [];
 
-            for (let i = 0; i < this.filter.length; i++) {
+            for (let i = 0; i < _filter.length; i++) {
                 const filterMap: {
                     letter: string;
                     found: boolean;
                 } = {
-                    letter: this.filter.charAt(i),
+                    letter: _filter.charAt(i),
                     found : false,
                 };
 
@@ -124,7 +126,6 @@ export class AppComponent {
         }
         
         for (let len = this.min; len < this.max + 1; len++) {
-            
             for (const word of this._sortedFilteredWords[len]) {
                 let skip = false;
 
@@ -151,8 +152,7 @@ export class AppComponent {
     }
 
     public handleInput(len: number, index: number, event: any): void {
-        console.log(event);
-        const _t: string = event.target.value;
+        const _t: string = (event.target.value || '').toLowerCase();
 
         if (!_t) {
             this.filterValues[len][index] = "";

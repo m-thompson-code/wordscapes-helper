@@ -19,6 +19,31 @@ while (line = liner.next()) {
         word = word.slice(0, word.length - 1);
     }
 
+    const exceptions = [
+        'pssh',
+        'shh',
+        'cwm',
+        'crwth',
+        'hmm',
+    ];
+
+    if (!exceptions.includes(word)) {
+        const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+
+        let hasVowel = false;
+
+        for (const vowel of vowels) {
+            if (word.includes(vowel)) {
+                hasVowel = true;
+                break;
+            }
+        }
+
+        if (!hasVowel) {
+            continue;
+        }
+    }
+    
     if (!word || word.length < 3 || word.length > 8) {
         continue;
     }
